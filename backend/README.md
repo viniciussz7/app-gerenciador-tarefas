@@ -13,24 +13,6 @@ Este é o backend do projeto **Gerenciador de Tarefas**, iniciado com a implemen
 - [JWT (jsonwebtoken)](https://www.npmjs.com/package/jsonwebtoken)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 
-## 📁 Estrutura de Diretórios
-
-gerenciador-tarefas/
-└── backend/
-  ├── prisma/ # Configuração do ORM e migrações
-  ├── src/
-  │ ├── controllers/ # Lógica das rotas
-  │ ├── middlewares/ # Validações e autenticações   (futuro)
-  │ ├── routes/ # Definição das rotas
-  │ ├── services/ # Lógica de negócio (ex: autenticação)
-  │ ├── utils/ # Funções utilitárias
-  │ ├── app.ts # Configuração do Express
-  │ └── server.ts # Inicialização do servidor
-  ├── .env # Variáveis de ambiente
-  ├── package.json # Dependências do projeto
-  ├── tsconfig.json # Configuração do TypeScript
-  └── README.md # Documentação do backend
-
 
 ## 📌 Funcionalidades Implementadas
 
