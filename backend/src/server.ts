@@ -1,18 +1,7 @@
-import express from "express";
-import cors from "cors";
-import authRoutes from "./routes/authRoutes";
 
-const app = express();
+import app from './app';
+
 const port = process.env.PORT || 3333;
-
-app.use(cors());
-app.use(express.json());
-
-app.use("/api/auth", authRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Hello, backend!");
-});
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
