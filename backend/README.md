@@ -16,10 +16,16 @@ Este é o backend do projeto **Gerenciador de Tarefas**, iniciado com a implemen
 
 ## 📌 Funcionalidades Implementadas
 
-- [x] Registro de usuários (`/register`)
-- [x] Login com geração de token JWT (`/login`)
-- [ ] Middleware de autenticação para rotas privadas (em desenvolvimento)
-- [ ] CRUD de tarefas (próxima etapa)
+- ✅ Registro de usuários (`POST /auth/register`)
+- ✅ Login com geração de token JWT (`POST /auth/login`)
+- ✅ Middleware de autenticação para proteger rotas privadas (`authMiddleware`)
+- ✅ Consulta de usuário autenticado (`GET /auth/me`)
+- ✅ CRUD de tarefas:
+  - Criar tarefa (`POST /tasks`)
+  - Listar tarefas do usuário (`GET /tasks`)
+  - Atualizar tarefa (`PUT /tasks/:id`)
+  - Deletar tarefa (`DELETE /tasks/:id`)
+  - Marcar/desmarcar tarefa como concluída (`PATCH /tasks/:id/toggle`)
 
 ## 🔧 Como Executar o Projeto Localmente
 
@@ -47,12 +53,13 @@ JWT_SECRET="sua_chave_secreta"
 
 ```bash
 npx prisma migrate dev
+npx prisma generate
 ```
 
 5. Inicie o servidor em modo desenvolvimento:
 
 ```bash
-npx ts-node-dev src/server.ts
+npm run dev
 ```
 
 ## ✅ Testando a API
@@ -87,12 +94,52 @@ Resposta esperada:
 }
 ```
 
-## 🛠️ Em Desenvolvimento
-- Middleware de autenticação (authMiddleware)
-- CRUD de tarefas
-- Sistema de permissões e perfis de usuário
+👤 Consultar Usuário Autenticado
+GET /auth/me
+(Cabeçalho Authorization: Bearer JWT_TOKEN_AQUI)
 
+📋 Tarefas (autenticado)
+🔑 POST /tasks
+```json
+{
+  "title": "Estudar Node",
+  "description": "Finalizar rotas com autenticação e Express"
+}
+```
+🔑 GET /tasks
+```json
+{
+	"id": "1d60b10e-0e91-4b21-9cd9-2752dffd7e76",
+	"title": "Estudar Node",
+	"description": "Finalizar rotas com autenticação e Express",
+	"completed": false,
+	"criatedAt": "2025-08-03T05:14:52.132Z",
+	"updatedAt": "2025-08-03T05:27:31.445Z",
+	"userId": "..."
+}
+```
+🔑 PUT /tasks/:id
+```json
+{
+  "title": "Estudar React.js",
+  "description": "Atualizar conteúdo com hooks e consumo de API"
+}
+```
+🔑 DELETE /tasks/:id — Deletar tarefa
+
+🔑 PATCH /tasks/:id/toggle (Resposta esperada:)
+```json
+{
+	"id": "1d60b10e-0e91-4b21-9cd9-2752dffd7e76",
+	"title": "Estudar React.js",
+	"description": "Atualizar conteúdo com hooks e consumo de API",
+	"completed": true,
+	"criatedAt": "2025-08-03T05:14:52.132Z",
+	"updatedAt": "2025-08-03T05:27:31.445Z",
+	"userId": "..."
+}
+```
 
 ---
 
-Desenvolvido por Vinicius Oliveira Souza
+Desenvolvido por Vinicius O. Souza
